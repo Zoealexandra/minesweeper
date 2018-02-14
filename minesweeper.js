@@ -38,11 +38,10 @@ function checkForWin () {
         return
       }
     }
-    lib.displayMessage('I think you won right?')
+    lib.displayMessage('Winner!')
 }
       // You can use this function call to declare a winner (once you've
-    // detected that they've won, that is!) else if (!board.cells[i].isMine && !board.cells[i].isMarked) {
-      //  lib.displayMessage('Not a bomb - good job bebs') board.cells[i].isMine && board.cells[i].isMarked
+    // detected that they've won, that is!) 
     //   lib.displayMessage('You win!')
 
 // Define this function to count the number of mines around the cell
