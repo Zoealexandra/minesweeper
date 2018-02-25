@@ -17,28 +17,63 @@ document.addEventListener('DOMContentLoaded', startGame)
 
 
 var board = {cells: []}
-var boardSize = getRandomArbitrary(2, 6)
-var randomBoo = Math.random() >= 0.5;
-//var numberOfBombs = 5
+var height = 4
+var width = 4
+var numMines = 4
 generateBoard()
+placeMine()
 
-
+/*//function to randomise size of board
+var boardSize = getRandomArbitrary(2, 6)
 function getRandomArbitrary(min, max) {
   return Math.random() * (max - min) + min;
-}
+}*/
 
+//function to generate board
 function generateBoard() {
-  for (var i = 0; i < boardSize; i++) {
-    for (var j = 0; j < boardSize; j++) {
+  for (var i = 0; i < width; i++) {
+    for (var j = 0; j < height; j++) {
       board.cells.push({
         row: i,
         col: j,
-        isMine: randomBoo,
+        isMine: false,
         hidden: true
       })
     }  
   }
 }
+
+//function to place mines
+function placeMine () {
+var placed = 0;
+
+  do
+    {
+      var k = Math.floor(Math.random() * height * width);    // Select a random cell
+        if (board.cells[k].isMine != true) // Make sure the cell doesn't already have a mine.
+          {
+          board.cells[k].isMine = true;    // Set the mine
+          placed++;                        // and increase the count
+          }        
+    } 
+    while (placed < numMines);
+  }
+
+
+
+  /*        Board.prototype.plantMines = function () {
+            var minesPlanted = 0;
+
+            while (minesPlanted < this.mineCount) {
+                var index = this.getRandomNumber(this.dimension * this.dimension);
+
+                if (!this.fields[index].isMine) {
+                    this.fields[index].isMine = true;
+                    minesPlanted++;
+                }
+            }
+        }; */
+
 
 function startGame () {
   // Don't remove this function call: it makes the game work!
