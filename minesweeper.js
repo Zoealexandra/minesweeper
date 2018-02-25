@@ -1,7 +1,7 @@
 document.addEventListener('DOMContentLoaded', startGame)
 
 // Define your `board` object here!
-var board = {
+/*var board = {
   cells: [
     { row: 0, col: 0, isMine: true, hidden: true},
     { row: 0, col: 1, isMine: false, hidden: true},
@@ -13,6 +13,31 @@ var board = {
     { row: 2, col: 1, isMine: false, hidden: true},
     { row: 2, col: 2, isMine: false, hidden: true}
   ]
+}*/
+
+
+var board = {cells: []}
+var boardSize = getRandomArbitrary(2, 6)
+var randomBoo = Math.random() >= 0.5;
+//var numberOfBombs = 5
+generateBoard()
+
+
+function getRandomArbitrary(min, max) {
+  return Math.random() * (max - min) + min;
+}
+
+function generateBoard() {
+  for (var i = 0; i < boardSize; i++) {
+    for (var j = 0; j < boardSize; j++) {
+      board.cells.push({
+        row: i,
+        col: j,
+        isMine: randomBoo,
+        hidden: true
+      })
+    }  
+  }
 }
 
 function startGame () {
@@ -33,9 +58,9 @@ for (var i = 0; i < board.cells.length; i++) {
 function checkForWin () {
     for (var i = 0; i < board.cells.length; i++) {
       if (board.cells[i].isMine && !board.cells[i].isMarked) { 
-          return
+          return;
       } else if (!board.cells[i].isMine && board.cells[i].hidden) {
-        return
+        return;
       }
     }
     lib.displayMessage('Winner!')
@@ -65,3 +90,6 @@ function countSurroundingMines (cell) {
   return count;
 }
 
+function reset() {
+  location.reload();
+}
